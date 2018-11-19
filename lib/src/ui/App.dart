@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news/src/ui/news_list.dart';
 
 class App extends StatelessWidget {
 
@@ -6,7 +7,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'News!',
-      home: Scaffold(),
+      home: NewsList(),
     );
   }
 }
