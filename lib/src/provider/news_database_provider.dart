@@ -1,3 +1,6 @@
+import 'package:news/src/provider/source_provider.dart';
+import 'package:news/src/provider/cache_provider.dart';
+
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
@@ -7,9 +10,15 @@ import 'dart:async';
 
 import '../models/item.dart';
 
-class NewsDatabaseProvider {
+class NewsDatabaseProvider implements SourceProvider, CacheProvider {
 
   Database database;
+
+
+  NewsDatabaseProvider() {
+
+    init();
+  }
 
   void init() async {
 
@@ -43,6 +52,7 @@ class NewsDatabaseProvider {
     );
   }
 
+  @override
   Future<Item> fetchItem(int id) async {
 
     final maps = await database.query(
@@ -59,8 +69,17 @@ class NewsDatabaseProvider {
     return null;
   }
 
+  @override
   Future<int> addItem(Item item) {
 
     return database.insert("items", item.toMap());
   }
+
+  @override
+  Future<List<int>> fetchTopIds() {
+
+    return null;
+  }
 }
+
+final newsDatabaseProvider = NewsDatabaseProvider();
