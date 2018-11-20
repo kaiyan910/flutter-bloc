@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../models/item.dart';
-import '../bloc/stoires_provider.dart';
+import '../bloc/stories_provider.dart';
 import 'loading_container.dart';
 
 class NewsListTile extends StatelessWidget {
@@ -31,14 +31,14 @@ class NewsListTile extends StatelessWidget {
               return LoadingContainer();
             }
 
-            return buildTile(itemSnapshot.data);
+            return buildTile(context, itemSnapshot.data);
           },
         );
       },
     );
   }
 
-  Widget buildTile(Item item) {
+  Widget buildTile(BuildContext context, Item item) {
 
     return Column(
       children: <Widget>[
@@ -51,6 +51,9 @@ class NewsListTile extends StatelessWidget {
               Text('${item.descendants}'),
             ],
           ),
+          onTap: () {
+            Navigator.pushNamed(context, '/news_details/${item.id}');
+          },
         ),
         Divider(height: 8.0),
       ],

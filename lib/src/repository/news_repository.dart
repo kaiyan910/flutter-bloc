@@ -24,8 +24,6 @@ class NewsRepository {
 
   Future<Item> fetchItem(int id) async {
 
-    print('fetch item from repository $id');
-
     Item item;
     var source;
 

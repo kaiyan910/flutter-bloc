@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 import '../models/item.dart';
-import '../repository/NewsRepository.dart';
+import '../repository/news_repository.dart';
 
 class StoriesBloc {
   final _repository = NewsRepository();

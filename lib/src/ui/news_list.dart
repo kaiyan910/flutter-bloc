@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../bloc/stoires_provider.dart';
+import '../bloc/stories_provider.dart';
 import 'news_list_tile.dart';
 import 'refresh.dart';
 
@@ -17,7 +17,7 @@ class NewsList extends StatelessWidget {
   }
 
   Widget buildList(StoriesBloc bloc) {
-    bloc.fetchTopIds();
+
     return StreamBuilder(
       stream: bloc.topIds,
       builder: (context, AsyncSnapshot<List<int>> snapshot) {
