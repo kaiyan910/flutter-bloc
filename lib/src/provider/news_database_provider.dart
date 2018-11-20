@@ -72,13 +72,23 @@ class NewsDatabaseProvider implements SourceProvider, CacheProvider {
   @override
   Future<int> addItem(Item item) {
 
-    return database.insert("items", item.toMap());
+    return database.insert(
+        "items",
+        item.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.ignore,
+    );
   }
 
   @override
   Future<List<int>> fetchTopIds() {
 
     return null;
+  }
+
+  @override
+  Future<int> clear() {
+
+    return database.delete("items");
   }
 }
 

@@ -24,8 +24,10 @@ class NewsRepository {
 
   Future<Item> fetchItem(int id) async {
 
+    print('fetch item from repository $id');
+
     Item item;
-    SourceProvider source;
+    var source;
 
     for (source in sources) {
 
@@ -37,9 +39,17 @@ class NewsRepository {
     }
 
     for (var cache in caches) {
-      cache.addItem(item);
+
+      if (cache != source) cache.addItem(item);
     }
 
     return item;
+  }
+
+  clearCache() async {
+
+    for (var cache in caches) {
+      await cache.clear();
+    }
   }
 }

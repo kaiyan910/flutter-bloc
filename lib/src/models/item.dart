@@ -17,18 +17,18 @@ class Item {
 
   Item.fromJson(Map<String, dynamic> json)
       : id = json['id'],
-        deleted = json['deleted'],
+        deleted = json['deleted'] ?? false,
         type = json['type'],
         by = json['by'],
         time = json['time'],
         text = json['text'],
-        dead = json['dead'],
+        dead = json['dead'] ?? false,
         parent = json['parent'],
-        kids = json['kids'],
+        kids = json['kids'] ?? [],
         url = json['url'],
         score = json['score'],
         title = json['title'],
-        descendants = json['descendants'];
+        descendants = json['descendants'] ?? 0;
 
   Item.fromDatabase(Map<String, dynamic> json)
       : id = json['id'],
