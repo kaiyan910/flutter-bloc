@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'package:news/src/repository/preferences_repository.dart';
 import 'package:rxdart/rxdart.dart';
 import '../models/item.dart';
 import '../repository/news_repository.dart';
 
 class StoriesBloc {
   final _repository = NewsRepository();
+  final _preferencesRepository = PreferencesRepository();
   final _topIds = PublishSubject<List<int>>();
   final _itemsFetcher = PublishSubject<int>();
   final _itemsOutput = BehaviorSubject<Map<int, Future<Item>>>();
@@ -23,6 +25,10 @@ class StoriesBloc {
 
   clearCache() {
     return _repository.clearCache();
+  }
+
+  updateLocale(String locale) {
+    return _preferencesRepository.updateLocale(locale);
   }
 
   fetchTopIds() async {
